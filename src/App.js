@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as chatActions from './ReduxStore/actions'
-import displayChat from './Messanger components/DisplayChat';
-import userInput from './Messanger components/UserInput';
 import './App.css';
 
 

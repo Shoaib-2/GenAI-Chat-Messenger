@@ -28,20 +28,42 @@
     <title>GenAI Chat Messenger</title>
   </head>
   <body>
-   <h1>
-    Welcome to My App
-   </h1>
-   <div id="root"></div>
-   <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+   <div id="root">
+    <header>
+      GenAI Chat Messenger
+     </header>
+     <main>
+      <p><strong>AI:</strong> Hello, How can I help you today ?</p>
+     </main>
+     <footer>
+      <div class="form-control">
+        <input class="input input-alt" placeholder="Type something intelligent..." required="" type="text">
+        <span class="input-border input-border-alt"></span>
+      </div>
+      
+      <button class="buttonpro">
+        <span> Send </span>
+      </button>
+      
+     </footer>
+   </div>
+   
+   <!-- <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script> -->
    <!--React Components-->
-   <script type="text/babel" src="/genai/src/Messanger components/DisplayChat.js"></script>
-   <script type="text/babel" src="/genai/src/Messanger components/Messagechat.js"></script>
-   <script type="text/babel" src="/genai/src/Messanger components/UserInput.js"></script>
-   <script type="text/babel" src="/genai/src/Messanger components/SendButton.js"></script>
-   <script type="text/babel" src="/genai/src/App.js"></script>
-   <script type="text/babel">
+   <script type="text" src="/genai/src/Messanger components/DisplayChat.js"></script>
+   <script type="text" src="/genai/src/Messanger components/Messagechat.js"></script>
+   <script type="text" src="/genai/src/Messanger components/UserInput.js"></script>
+   <script type="text" src="/genai/src/Messanger components/SendButton.js"></script>
+   <script type="text" src="/genai/src/ReduxStore/actions.js"></script>
+   <script type="text" src="/genai/src/ReduxStore/initialState.js"></script>
+   <script type="text" src="/genai/src/ReduxStore/Mainreducers.js"></script>
+   <script type="text" src="/genai/src/ReduxStore/store.js"></script>
+   <script type="text" src="/genai/src/App.js"></script>
+   <script type="text" src="/genai/src/index.js"></script>
+   
+   <script type="text">
     ReactDOM.render(<App />, document.getElementById('root'))
    </script>
   </body>
