@@ -6,27 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './ReduxStore/store';
 
+const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot(rootElement);
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// Wrapping my app component with the Redux Provider and passing it to the store.
 root.render(
-  <React.StrictMode>
+ <Provider store={store}>
     <App />
-  </React.StrictMode>
+ </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-
-
-
-// Wrap your my app component with the Redux Provider and passing it to the store.
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);

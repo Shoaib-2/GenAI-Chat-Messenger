@@ -1,18 +1,18 @@
-import React from "react";
+
 import MessageChat from "./Messagechat";
 
-const displayChat = ({messages}) => {
+const DisplayChat = ({messages}) => {
     return (
         <div className="display-chat">
-            {messages.map((message1, index) =>(
+            {messages.map((message, index) =>(
                 <MessageChat
                 key={index}
-                sender={message1.sender}
-                content={message1.content}
-                timeStamp={message1.timeStamp}
+                sender={message.sender}
+                content={message.content}
+                timeStamp={message.timeStamp}
                 />
             ))}
         </div>
     )
 }
-export default displayChat;
+export default DisplayChat;

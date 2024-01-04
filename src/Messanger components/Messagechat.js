@@ -1,4 +1,4 @@
-import React from "react";
+
 const MessageChat = ({sender, content, timestamp}) =>{
     return(
       <div className='message-chat'>

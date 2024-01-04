@@ -1,15 +1,16 @@
-import React from "react";
-const userInput = ({inputChange, sendMessage, inputValue}) => {
+
+const UserInput = ({onChangeInput, onSendMessage, inputValue}) => {
     return (
         <div className="input-chat">
             <input
             type="text"
+            value={inputValue}
+            onChange={onChangeInput}
             placeholder="Type your message"
-            onChange={inputChange}
-            value={inputValue}/>
-            <button onClick={sendMessage}>Send</button>
+            />
+            <button onClick={onSendMessage}>Send</button>
         </div>
     )
 }
 
-export default userInput;
+export default UserInput;

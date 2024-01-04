@@ -1,5 +1,5 @@
-import React from "react";
-const sendButton = ({onclick}) => {
+
+const SendButton = ({onclick}) => {
     return(
         <button className="button-send" onClick = {onclick}>
             Send
@@ -7,4 +7,4 @@ const sendButton = ({onclick}) => {
     )
 }
 
-export default sendButton
+export default SendButton
