@@ -9,7 +9,7 @@ const DisplayChat = ({messages}) => {
                 key={index}
                 sender={message.sender}
                 content={message.content}
-                timeStamp={message.timeStamp}
+                timestamp={message.timestamp}
                 />
             ))}
         </div>

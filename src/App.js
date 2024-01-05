@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -49,23 +50,6 @@ const App = ({ user, messages, addMessage }) => {
       // Handle other potential errors, such as network issues or API key problems
     }
   };
-  
-
-//   return (
-//     <div className='App'>
-//       {messages.map((message, index) => (
-//         <div key={index}>
-//           <span>{message.sender}</span>
-//           <span>{message.content}</span>
-//           <span>{message.timestamp}</span>
-//         </div>
-//       ))}
-//       <input type='text' value={inputValue} onChange={handleChangeInput} />
-//       <button onClick={handleSendMessage}>Send</button>
-//     </div>
-//   );
-// };
-
 return (
   <div className='App'>
     <DisplayChat messages={messages} />
@@ -78,11 +62,11 @@ return (
 );
 };
 
-const messages = [
-  { sender: 'User1', content: 'Hello!', timestamp: '12:00 PM' },
-  { sender: 'User2', content: 'Hi there!', timestamp: '12:05 PM' },
-  // ... other messages
-];
+// const messages = [
+//   { sender: 'User1', content: 'Hello!', timestamp: '12:00 PM' },
+//   { sender: 'User2', content: 'Hi there!', timestamp: '12:05 PM' },
+// ];
+// console.log(messages)
 
 const mapStateToProps = (state) => {
   return {

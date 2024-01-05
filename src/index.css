@@ -49,7 +49,7 @@ footer {
   display: flex;
 }
 
-.input {
+.input-chat {
   color: black;
   font-size: 0.9rem;
   background-color: transparent;
@@ -63,7 +63,7 @@ footer {
   border-radius: 10px;
 }
 
-.input-border {
+.input-border  {
   position: absolute;
   background: var(--border-after-color);
   width: 0%;
@@ -73,7 +73,7 @@ footer {
   transition: width 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
-.input:focus {
+.input-chat:focus {
   outline: none;
 }
 
@@ -122,7 +122,7 @@ footer {
 
 /* button settings  */
 
-.buttonpro {
+.button-send {
   box-sizing: border-box;
   padding: var(--btn-padding);
   display: flex;
@@ -139,7 +139,7 @@ footer {
   border: 2px solid #2a2b3a;
 }
 
-.buttonpro span {
+.button-send span {
   letter-spacing: var(--btn-letter-spacing);
   transition: var(--btn-transition);
   box-sizing: border-box;
@@ -147,29 +147,29 @@ footer {
   background: inherit;
 }
 
-.buttonpro span::before {
+.button-send span::before {
   box-sizing: border-box;
   position: absolute;
   content: "";
   background: inherit;
 }
-.buttonpro:focus {
+.button-send:focus {
   scale: 1.09;
 }
-.buttonpro:hover,
-.buttonpro:focus {
+.button-send:hover,
+.button-send:focus {
   background: var(--btn-default-bg);
   box-shadow: 0px 0px 10px 0px rgba(119, 68, 255, 0.7);
   border: 2px solid rgb(9, 255, 0);
 }
 
-.buttonpro:hover span,
-.buttonpro:focus span {
+.button-send:hover span,
+.button-send:focus span {
   color: rgb(9, 255, 0);
 }
 
-.buttonpro:hover span::before,
-.buttonpro:focus span::before {
+.button-send:hover span::before,
+.button-send:focus span::before {
   animation: chitchat linear both var(--btn-animation-duration);
 }
 

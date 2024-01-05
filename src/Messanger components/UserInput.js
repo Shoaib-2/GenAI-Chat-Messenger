@@ -6,11 +6,12 @@ const UserInput = ({onChangeInput, onSendMessage, inputValue}) => {
             type="text"
             value={inputValue}
             onChange={onChangeInput}
-            placeholder="Type your message"
+            placeholder="Type Something Intelligent..."
             />
             <button onClick={onSendMessage}>Send</button>
         </div>
     )
 }
+
 
 export default UserInput;
