@@ -1,38 +1,32 @@
-import axios from "axios";
-const getResponseOpenAi = async (prompt) => {
-  try {
-    const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        prompt: prompt,
-        max_tokens: 150,
-        n: 1,
-        stop: null,
-        temperature: 0.7,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${APIkey}`,
-        },
-      }
-    );
+const axios = require("axios")
 
-    // const generatedText = response.data.choices[0]?.message?.content || "";
-    return response.data;
-  } catch (error) {
-    console.error("getResponseOpenAi Errors", error.message);
-    throw error;
+require("dotenv").config();
+
+
+const getResponseOpenAi = async (prompt) => {
+  const apiKey = process.env.OPENAI_API_KEY;
+
+  const client = axios.create({
+  headers: {
+    Authorization: `Bearer ${apiKey}`
   }
-};
-async function main() {
-    try {
-        const responseText = await getResponseOpenAi('What is the weather like today?');
-        console.log(responseText);
-    } catch (error) {
-        console.error('Error:', error.message);
-    }
+})
+
+const params = {
+  prompt: "how are you?",
+  model: "text-davinci-003",
+  max_tokens: 10,
+  temperature: 0
+}
+try{
+  const result = await client.post('https://api.openai.com/v1/completions', params)
+  console.log(result.data.choices[0].text)
+}
+catch(error){
+  console.error(error)
+}
 }
 
-main();
-export default getResponseOpenAi;
+module.exports = {getResponseOpenAi}
+
+

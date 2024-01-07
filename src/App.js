@@ -1,84 +1,87 @@
 
-import React, {useState} from 'react';
-import { connect } from 'react-redux';
+//necessary libraries and components
+import React, {useReducer } from 'react';
 import { bindActionCreators } from 'redux';
-import * as chatActions from './ReduxStore/actions'
-import getResponseOpenAi from './API/api';
-import MessageChat from './Messanger components/Messagechat';
+import { connect } from 'react-redux';
 import DisplayChat from './Messanger components/DisplayChat';
-import SendButton from './Messanger components/SendButton';
+import * as chatActions from './ReduxStore/actions';
 import UserInput from './Messanger components/UserInput';
 
 
+// Define the initial state and the reducer function
+const initialState = {
+ inputValue: '',
+ messages: [],
+};
 
+function reducer(state, action) {
+ switch (action.type) {
+    case 'SET_INPUT_VALUE':
+      return { ...state, inputValue: action.value };
+    case 'SEND_MESSAGE':
+      return { ...state, inputValue: '', messages: [...state.messages, action.message] };
+    default:
+      return state;
+ }
+}
 
-const App = ({ user, messages, addMessage }) => {
-  const [inputValue, setInputValue] = useState('');
+function App() {
+ const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleChangeInput = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleSendMessage = async () => {
+ // Implement the handleSendMessage function
+ const handleSendMessage = async () => {
     try {
-      if (inputValue.trim() !== '') {
-        const newMessage = {
-          sender: user.username,
-          content: inputValue,
-          timestamp: new Date().toLocaleTimeString(),
-        };
-  
-        addMessage(newMessage);
-  
-        const responseAi = await getResponseOpenAi(inputValue);
-  
-        if (responseAi) {
-          addMessage({
-            sender: 'genai',
-            content: responseAi,
-            timestamp: new Date().toLocaleTimeString(),
-          });
-  
-          setInputValue('');
-        } else {
-          console.error('Empty response from the OpenAI API');
-          // Handle the case where the API response is empty
-        }
+      // Fetch the data from the API and send it to the server
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization:  `Bearer ${process.env.OPENAI_API_KEY}`, 
+        },
+        body: JSON.stringify({ message: state.inputValue }),
+      });
+
+      // Check if the response is successful
+      if (response.ok) {
+        // Dispatch the SEND_MESSAGE action to update the state
+        dispatch({ type: 'SEND_MESSAGE', message: state.inputValue });
+      } else {
+        console.error('Error in handleSendMessage:', response.statusText);
       }
     } catch (error) {
       console.error('Error in handleSendMessage:', error.message);
       // Handle other potential errors, such as network issues or API key problems
     }
-  };
-return (
-  <div className='App'>
-    <DisplayChat messages={messages} />
-    <UserInput
-      onChangeInput={handleChangeInput}
-      onSendMessage={handleSendMessage}
-      inputValue={inputValue}
-    />
-  </div>
-);
-};
+ };
 
-// const messages = [
-//   { sender: 'User1', content: 'Hello!', timestamp: '12:00 PM' },
-//   { sender: 'User2', content: 'Hi there!', timestamp: '12:05 PM' },
-// ];
-// console.log(messages)
+ // Implement the handleChangeInput function
+ const handleChangeInput = (event) => {
+    dispatch({ type: 'SET_INPUT_VALUE', value: event.target.value });
+ };
+
+ return (
+   <div className='App'>
+     <DisplayChat messages={state.messages} />
+     <UserInput
+       onChangeInput={handleChangeInput}
+       onSendMessage={handleSendMessage}
+       inputValue={state.inputValue}
+     />
+   </div>
+ );
+}
 
 const mapStateToProps = (state) => {
-  return {
+ return {
     user: state.user,
     messages: state.messages,
-  };
+ };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
+ return {
     addMessage: bindActionCreators(chatActions.addMessage, dispatch),
-  };
+ };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
